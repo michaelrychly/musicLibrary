@@ -1,0 +1,19 @@
+{
+  "name": "musiclibrary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelrychly/musicLibrary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelrychly/musicLibrary/issues"
+  },
+  "homepage": "https://github.com/michaelrychly/musicLibrary#readme"
+}
