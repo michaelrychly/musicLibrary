@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/michaelrychly/musicLibrary/issues"
   },
-  "homepage": "https://github.com/michaelrychly/musicLibrary#readme"
+  "homepage": "https://github.com/michaelrychly/musicLibrary#readme",
+  "dependencies": {
+    "datejs": "^1.0.0-rc3"
+  }
 }
