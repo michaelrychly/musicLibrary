@@ -1,29 +1,28 @@
 
-//why can I not do this.playlist.push(thePlaylist)?
 const date = require('datejs');
 
 class Library {
-  constructor (name, creator, playlist){
-    this.name = name;
-    this.creator = creator;
-    this.playlist = [];
+  constructor (name, creator){
+    this.names = name;
+    this.creators = creator;
+    this.playlists = [];
   };
 
   get name() {
-    return this._name;
+    return this._names;
   }
 
   get creator() {
-    return this._creator;
+    return this._creators;
   }
 
   get playlist() {
-    return this._playlist;
+    return this._playlists;
   }
 
   set name(theName) {
     if(theName !== "") {
-      this._name = theName;
+      this._names = theName;
     } else {
       throw "The name can not be empty!";
     }
@@ -31,7 +30,7 @@ class Library {
 
   set creator(theCreator) {
     if(theCreator !== "") {
-      this._creator = theCreator;
+      this._creators = theCreator;
     } else {
       throw "The creator can not be empty!";
     }
@@ -39,8 +38,7 @@ class Library {
 
   set playlist(thePlaylist) {
     if(thePlaylist !== "") {
-      //this.playlist.push(thePlaylist);
-      this._playlist = thePlaylist;
+      this.playlists.push(thePlaylist);
     } else {
       throw "The playlist can not be empty!";
     }
@@ -48,30 +46,30 @@ class Library {
 }
 
 class Playlist {
-  constructor(name, track){
-    this.name = name;
-    this.track = [];
+  constructor(name){
+    this.names = name;
+    this.tracks = [];
   };
 
   get name() {
-    return this._name;
+    return this._names;
   }
 
-  get tracks() {
-    return this.track;
+  get track() {
+    return this._tracks;
   }
 
   set name(theName) {
     if(theName !== "") {
-      this._name = theName;
+      this._names = theName;
     } else {
       throw "The name can not be empty!";
     }
   }
 
-  set tracks(theTrack) {
+  set track(theTrack) {
     if(theTrack !== "") {
-      this.track.push(theTrack);
+      this.tracks.push(theTrack);
     } else {
       throw "The track can not be empty!";
     }
@@ -107,7 +105,8 @@ class Track {
     }
   }
 
-  set rating(theRating) { // Sets this._email, but only if email is valid
+  set rating(theRating) {
+    // Sets this._email, but only if email is valid
     if (String(theRating).match(/^[1-5]$/)) {
       this._rating = theRating;
     }
@@ -130,7 +129,7 @@ class Track {
 Playlist.prototype.overallRating = function (){
   let ratingsOfTracks = 0;
   let numberOfTracks = 0;
-  this.track.map((singleTrack) => {
+  this.tracks.map((singleTrack) => {
     ratingsOfTracks += singleTrack.rating;
     numberOfTracks += 1;
   })
@@ -140,7 +139,7 @@ Playlist.prototype.overallRating = function (){
 //sum the duration of all of its tracks
 Playlist.prototype.totalDuration = function (){
   let sumOfTracks = 0;
-  this.track.map((singleTrack) => {
+  this.tracks.map((singleTrack) => {
     sumOfTracks += singleTrack.length;
   })
   return (new Date).clearTime().addSeconds(sumOfTracks).toString('H:mm:ss');
@@ -157,28 +156,23 @@ let eyeTiger = new Track('Eye Of The Tiger', 1, 85);
 let everyBreath = new Track('Every Breath You Take', 2, 133);
 let rolling = new Track('Rolling In The Deep', 1, 205);
 
-let firstList = new Playlist;
-firstList.name = 'Michaels playlist';
-firstList.tracks = partyRock;
-firstList.tracks = eyeTiger;
-firstList.tracks = everyBreath;
-firstList.tracks = rolling;
+let firstList = new Playlist('Michaels playlist');
+firstList.track = partyRock;
+firstList.track = eyeTiger;
+firstList.track = everyBreath;
+firstList.track = rolling;
 
-let secondList = new Playlist;
-secondList.name = 'Pauls playlist';
-secondList.tracks = feeling;
-secondList.tracks = maca;
-secondList.tracks = unBreak;
-secondList.tracks = howDeep;
+let secondList = new Playlist('Pauls playlist');
+secondList.track = feeling;
+secondList.track = maca;
+secondList.track = unBreak;
+secondList.track = howDeep;
 
-let musicLib = new Library("the one and only", "Michael", firstList);
-//musicLib.name = "the one and only";
-//musicLib.creator = "Michael";
-//musicLib.playlist = firstList;
+let musicLib = new Library("the one and only", "Michael");
+musicLib.playlist = firstList;
 musicLib.playlist = secondList;
 
-//console.log(musicLib.playlist);
-console.log(firstList);
+console.log(musicLib);
 console.log(firstList.totalDuration());
 console.log(firstList.overallRating());
 
